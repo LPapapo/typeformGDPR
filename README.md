@@ -27,7 +27,8 @@ When you run the script, all forms are searched and a report is generated.
 1. Make sure that you have the API access token placed in the config file . ( can be requested from ops)
 2. While in the config file, you can change the response.deletion setting to true or false. If true, when he finds a requeried entry, it will be deleted automatically.
 If set to false, it will only return the find result.(save the changes)![typeform1](https://user-images.githubusercontent.com/97594496/186649820-916cbfa7-6f63-4adf-9608-048da796d940.jpg)
-3. The next step is to open input.txt and copy all of the emails that need to be deleted into the txt file line by line.(save the changes)
+3. The next step is to open input.txt and copy all of the emails that need to be deleted into the txt file line by line.(save the changes)![typeform2](https://user-images.githubusercontent.com/97594496/186651169-9671abd5-854e-43db-8bf7-6e0fdd8a78d5.jpg)
 4. Start the search by opening the typeformGDPR forlder in terminal and typing 'python typeformGDPR.py'.
 5.  After the search is finished, you can review the errors, logs, and results.
+
 
