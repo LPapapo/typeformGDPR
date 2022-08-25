@@ -24,7 +24,7 @@ When you run the script, all forms are searched and a report is generated.
 
 ### How to use it ?
 
-1.Make sure that you have the API access token placed in the config file . ( can be requested from ops)
+1. Make sure that you have the API access token placed in the config file . ( can be requested from ops)
 2. While in the config file, you can change the response.deletion setting to true or false. If true, when he finds a requeried entry, it will be deleted automatically.
 If set to false, it will only return the find result.(save the changes)
 3. The next step is to open input.txt and copy all of the emails that need to be deleted into the txt file line by line.(save the changes)
