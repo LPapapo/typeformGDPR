@@ -23,7 +23,7 @@ When you run the script, all forms are searched and a report is generated.
 
 
 ### How to use it ?
-
+(Make sure you have 'Python' and 'requests' module installed (run in cmd 'pip install requests')
 1. Make sure that you have the API access token placed in the config file . 
 2. While in the config file, you can change the response.deletion setting to true or false. If true, when it finds a requeried entry, it will be deleted automatically.
 If set to false, it will only return the find result.(save the changes)![tyform0](https://user-images.githubusercontent.com/97594496/186655086-389981bf-a2e7-432a-9efe-a5db5830192a.png)
