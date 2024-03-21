@@ -1,8 +1,6 @@
 import requests
 import configparser
 import os
-import subprocess
-import sys
 
 api_workspaces_url = "https://api.typeform.com/workspaces"
 workspaces_page_size = 200
@@ -10,9 +8,6 @@ workspaces_page_size = 200
 api_forms_url = "https://api.typeform.com/forms/"
 forms_page_size = 200
 
-
-def install(package):
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
 def openLogFile():
     main_path = os.path.dirname(__file__)
@@ -59,7 +54,7 @@ def get_matching_data_in_responses(api_url, email):
     }
     apiResponse = requests.get(api_url, headers=header, params=params)
     responses = apiResponse.json()
-    return responses
+    return responses['total_items']
 
 
 def delete_response(response_id, form_id):
@@ -72,27 +67,22 @@ def delete_response(response_id, form_id):
 def handle_email(email, formId, formName, workspaceName):
     apiResponseUrl = api_forms_url + formId + '/responses'
     response = get_matching_data_in_responses(apiResponseUrl, email)
-    if response['total_items'] != 0:
-        message = '------ FOUND email: ' + email + ' on workspace " ' + workspaceName + ' " and form " ' + formName+'. Number of occurrences " '+str(response['total_items'])+" ' "
+    if response != 0:
+        message = '------ FOUND email: ' + email + ' on workspace " ' + workspaceName + ' " and form " ' + formName+' "'
 
         writeLog(message)
         writeResult(message)
 
         response_deletion_flag = config.getboolean('GeneralProperties', 'response.deletion')
         if response_deletion_flag:
-            items = response['items']
-            for item in items:
-                delete_response(item['response_id'], formId)
-                message = '--------DELETED response with email: ' + email + ' on workspace " ' + workspaceName + ' " and form " ' + formName+' "'
+            delete_response(response['response_id'], formId)
+            message = '--------DELETED response with email: ' + email + ' on workspace " ' + workspaceName + ' " and form " ' + formName+' "'
 
-                writeLog(message)
-                writeResult(message)
+            writeLog(message)
+            writeResult()
 
 
 try:
-
-    install('requests')
-
     config = setup_config()
     logFile = openLogFile()
     errorFile = openErrorFile()
